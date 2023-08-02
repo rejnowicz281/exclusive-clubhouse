@@ -1,1 +1,11 @@
-<nav></nav>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <% if(currentUser) { %>
+        <li><a href="/log-out">Logout</a></li>
+        <% } else{ %>
+        <li><a href="/log-in">Log in</a></li>
+        <li><a href="/sign-up">Sign Up</a></li>
+        <% } %>
+    </ul>
+</nav>

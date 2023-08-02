@@ -1,13 +1,19 @@
 // import rateLimit from "express-rate-limit";
+import bcrypt from "bcryptjs";
 import compression from "compression";
 import debug from "debug";
 import express from "express";
+import session from "express-session";
 import helmet from "helmet";
 import createError from "http-errors";
 import methodOverride from "method-override";
 import mongoose from "mongoose";
+import passport from "passport";
+import localStrategy from "passport-local";
 
 import errorHandler from "./errorHandler.js";
+import User from "./models/user.js";
+import authRouter from "./routes/auth.js";
 
 const app = express();
 
@@ -32,7 +38,6 @@ mongoose
 app.use(compression());
 app.use(helmet());
 app.set("view engine", "ejs");
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
@@ -42,11 +47,68 @@ app.use(methodOverride("_method"));
 //         max: 200,
 //     })
 // );
+app.use(
+    session({
+        secret: "secret",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport config
+passport.use(
+    new localStrategy(
+        {
+            usernameField: "email",
+            passwordField: "password",
+        },
+        async (email, password, done) => {
+            try {
+                const user = await User.findOne({ email });
+
+                if (!user) return done(null, false, { message: "Incorrect email" });
+
+                bcrypt.compare(password, user.password, (err, res) => {
+                    if (res) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false, { message: "Incorrect password" });
+                    }
+                });
+            } catch (err) {
+                return done(err);
+            }
+        }
+    )
+);
+
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async function (id, done) {
+    try {
+        const user = await User.findById(id);
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
+});
+
+// current user
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 // routes
 app.get("/", (req, res) => {
     res.render("index", { title: "Home" });
 });
+
+app.use(authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

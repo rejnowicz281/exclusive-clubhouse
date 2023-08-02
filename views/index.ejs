@@ -4,5 +4,14 @@
     <body>
         <%- include("./partials/nav.ejs") %>
         <h1>Home</h1>
+        <% if(currentUser) {%>
+        <p>Welcome, <%= currentUser.identifier %></p>
+        <% if(currentUser.is_admin) {%>
+        <p>You are an admin</p>
+        <% } %> <% if(currentUser.is_member) {%>
+        <p>You are a member</p>
+        <% } %> <% } else{ %>
+        <p>Welcome, guest</p>
+        <% } %>
     </body>
 </html>
