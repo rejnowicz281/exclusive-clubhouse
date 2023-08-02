@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+    <body>
+        <%- include("../partials/nav.ejs") %>
+        <h1>Become A Member</h1>
+        <form action="/membership?_method=PUT" method="post">
+            <div>
+                <label for="password">Secret Membership Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <%- include("../partials/formErrors.ejs") %>
+    </body>
+</html>

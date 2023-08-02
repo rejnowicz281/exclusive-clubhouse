@@ -2,8 +2,11 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/posts">Posts</a></li>
-        <% if(currentUser) { %>
+        <% if(currentUser) { %> <% if(currentUser.is_member) {%>
         <li><a href="/posts/new">New Post</a></li>
+        <% } else { %>
+        <li><a href="/membership">Become a Member</a></li>
+        <% } %>
         <li><a href="/log-out">Logout</a></li>
         <% } else{ %>
         <li><a href="/log-in">Log in</a></li>
