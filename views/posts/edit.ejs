@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+    <body>
+        <%- include("../partials/nav.ejs") %>
+        <h1>Edit Post</h1>
+        <!-- prettier-ignore -->
+        <%- include("./form.ejs", { action: `${post.url}?_method=PUT`, submitValue: "Update Post"}) %>
+        <%- include("../partials/formErrors.ejs") %>
+    </body>
+</html>

@@ -15,6 +15,7 @@ import localStrategy from "passport-local";
 import errorHandler from "./errorHandler.js";
 import User from "./models/user.js";
 import authRouter from "./routes/auth.js";
+import postsRouter from "./routes/posts.js";
 
 const app = express();
 
@@ -111,6 +112,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(authRouter);
+app.use("/posts", postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

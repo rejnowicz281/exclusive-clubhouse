@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+    <body>
+        <%- include("../partials/nav.ejs") %>
+        <h1><%= post.title %></h1>
+        <hr />
+        <div>
+            <% if(post.body) {%>
+            <p><%= post.body %></p>
+            <% } %>
+            <p><b>Author:</b> <%= post.author.identifier %></p>
+            <p><b>Created:</b> <%= post.createdAt %></p>
+            <p><b>Last Updated:</b> <%= post.updatedAt %></p>
+        </div>
+        <a href="<%= post.url %>/edit">Edit Post</a>
+        <form action="<%= post.url %>?_method=DELETE" method="POST">
+            <button>Delete Post</button>
+        </form>
+    </body>
+</html>

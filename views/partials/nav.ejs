@@ -1,7 +1,9 @@
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
+        <li><a href="/posts">Posts</a></li>
         <% if(currentUser) { %>
+        <li><a href="/posts/new">New Post</a></li>
         <li><a href="/log-out">Logout</a></li>
         <% } else{ %>
         <li><a href="/log-in">Log in</a></li>
