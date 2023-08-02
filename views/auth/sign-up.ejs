@@ -7,19 +7,28 @@
         <form action="/sign-up" method="POST">
             <div>
                 <label for="first_name">First Name</label>
-                <input name="first_name" placeholder="First Name" type="text" />
+                <!-- prettier-ignore -->
+                <input name="first_name" placeholder="First Name" type="text" value="<%= locals.user ? user.first_name : "" %>" />
             </div>
             <div>
                 <label for="last_name">Last Name</label>
-                <input name="last_name" placeholder="Last Name" type="text" />
+                <!-- prettier-ignore -->
+                <input name="last_name" placeholder="Last Name" type="text" value="<%= locals.user ? user.last_name : "" %>"/>
             </div>
             <div>
                 <label for="email">Email</label>
-                <input name="email" placeholder="Email" type="email" required />
+                <!-- prettier-ignore -->
+                <input name="email" placeholder="Email" type="email" required value="<%= locals.user ? user.email : "" %>"/>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input name="password" type="password" required />
+                <!-- prettier-ignore -->
+                <input name="password" type="password" required value="<%= locals.password ? password : "" %>" />
+            </div>
+            <div>
+                <label for="password_confirm">Password Confirm</label>
+                <!-- prettier-ignore -->
+                <input name="password_confirm" type="password" value="<%= locals.password_confirm ? password_confirm : "" %>" />
             </div>
             <button type="submit">Sign Up</button>
         </form>

@@ -28,6 +28,10 @@ export const signUpPost = [
             return true;
         }),
     body("password", "Password must not be empty").trim().isLength({ min: 1 }).escape(),
+    body("password_confirm").custom((value, { req }) => {
+        if (value !== req.body.password) throw new Error("Passwords do not match");
+        return true;
+    }),
     body("first_name").optional({ checkFalsy: true }).trim().escape(),
     body("last_name").optional({ checkFalsy: true }).trim().escape(),
     asyncHandler(async (req, res) => {
@@ -42,7 +46,13 @@ export const signUpPost = [
         });
 
         if (!errors.isEmpty()) {
-            res.render("auth/sign-up", { title: "Sign Up", user, errors: errors.array() });
+            res.render("auth/sign-up", {
+                title: "Sign Up",
+                user,
+                password: req.body.password,
+                password_confirm: req.body.password_confirm,
+                errors: errors.array(),
+            });
         } else {
             await user.save();
 
