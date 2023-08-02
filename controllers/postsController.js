@@ -36,6 +36,8 @@ export const postShow = asyncHandler(async (req, res) => {
 });
 
 export const postNew = asyncHandler(async (req, res) => {
+    if (req.isUnauthenticated()) return res.redirect("/log-in");
+
     res.render("posts/new", { title: "New Post" });
 });
 
@@ -69,6 +71,7 @@ export const postEdit = asyncHandler(async (req, res) => {
     const id = req.params.id;
 
     if (!ObjectId.isValid(id)) return res.redirect("/posts");
+    if (req.isUnauthenticated()) return res.redirect("/log-in");
 
     const post = await Post.findById(id);
 

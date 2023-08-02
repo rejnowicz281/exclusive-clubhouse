@@ -9,6 +9,8 @@ import { body, validationResult } from "express-validator";
 import asyncHandler from "../asyncHandler.js";
 
 export const membershipGet = (req, res) => {
+    if (req.isUnauthenticated()) return res.redirect("/log-in");
+
     res.render("membership/form", { title: "Become a Member" });
 };
 
