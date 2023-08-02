@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import compression from "compression";
 import debug from "debug";
 import express from "express";
+import flash from "express-flash";
 import session from "express-session";
 import helmet from "helmet";
 import createError from "http-errors";
@@ -37,6 +38,7 @@ mongoose
 // middleware and static files
 app.use(compression());
 app.use(helmet());
+app.use(flash());
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
