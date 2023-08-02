@@ -13,7 +13,9 @@ const logger = debug("app:postsController");
 export const postIndex = asyncHandler(async (req, res) => {
     const posts = await Post.find().sort({ createdAt: -1 }).populate("author");
 
-    res.render("posts/index", { title: "Posts", posts });
+    const authorized = req.isAuthenticated() && (req.user.is_member || req.user.is_admin);
+
+    res.render("posts/index", { title: "Posts", posts, authorized });
 });
 
 export const postShow = asyncHandler(async (req, res) => {
@@ -25,7 +27,12 @@ export const postShow = asyncHandler(async (req, res) => {
 
     if (!post) return res.redirect("/posts");
 
-    res.render("posts/show", { title: `Post '${post.title}'`, post });
+    const authorized = req.isAuthenticated() && (req.user.is_member || req.user.is_admin); // only members and admins can see posts
+
+    const canModify =
+        req.isAuthenticated() && ((req.user.is_member && req.user.id == post.author.id) || req.user.is_admin); // only members-authors and admins can modify posts
+
+    res.render("posts/show", { title: `Post '${post.title}'`, post, authorized, canModify });
 });
 
 export const postNew = asyncHandler(async (req, res) => {
@@ -80,7 +87,6 @@ export const postUpdate = [
         const postData = {
             title: req.body.title,
             body: req.body.body || undefined,
-            author: req.user.id,
             _id: id,
         };
 

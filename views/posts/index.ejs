@@ -11,9 +11,9 @@
             <% if(post.body) {%>
             <p><%= post.body %></p>
             <% } %>
-            <p><b>Author:</b> <%= post.author.identifier %></p>
-            <p><b>Created:</b> <%= post.createdAt %></p>
-            <p><b>Last Updated:</b> <%= post.updatedAt %></p>
+            <p><b>Author:</b> <%= authorized ? post.author.identifier : "Not authorized" %></p>
+            <p><b>Created:</b> <%= authorized ? post.createdAt : "Not authorized" %></p>
+            <p><b>Last Updated:</b> <%= authorized ? post.updatedAt : "Not authorized" %></p>
             <a href="<%= post.url %>">View Post</a>
         </div>
         <% }) %>

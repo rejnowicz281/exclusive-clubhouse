@@ -9,13 +9,15 @@
             <% if(post.body) {%>
             <p><%= post.body %></p>
             <% } %>
-            <p><b>Author:</b> <%= post.author.identifier %></p>
-            <p><b>Created:</b> <%= post.createdAt %></p>
-            <p><b>Last Updated:</b> <%= post.updatedAt %></p>
+            <p><b>Author:</b> <%= authorized ? post.author.identifier : "Not authorized" %></p>
+            <p><b>Created:</b> <%= authorized ? post.createdAt : "Not authorized" %></p>
+            <p><b>Last Updated:</b> <%= authorized ? post.updatedAt : "Not authorized" %></p>
         </div>
+        <% if(canModify) {%>
         <a href="<%= post.url %>/edit">Edit Post</a>
         <form action="<%= post.url %>?_method=DELETE" method="POST">
             <button>Delete Post</button>
         </form>
+        <% } %>
     </body>
 </html>
