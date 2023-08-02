@@ -77,7 +77,7 @@ export const logInPost = passport.authenticate("local", {
     failureFlash: true,
 });
 
-export const logOut = (req, res) => {
+export const logOut = (req, res, next) => {
     req.logout(function (err) {
         if (err) return next(err);
 
