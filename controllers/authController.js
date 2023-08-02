@@ -37,12 +37,14 @@ export const signUpPost = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
-        const user = new User({
+        const userData = {
             email: req.body.email,
             password: req.body.password,
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-        });
+            first_name: req.body.first_name || undefined,
+            last_name: req.body.last_name || undefined,
+        };
+
+        const user = new User(userData);
 
         if (!errors.isEmpty()) {
             res.render("auth/sign-up", {
