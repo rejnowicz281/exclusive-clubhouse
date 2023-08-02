@@ -36,25 +36,26 @@ export const signUpPost = [
     body("last_name").optional({ checkFalsy: true }).trim().escape(),
     asyncHandler(async (req, res) => {
         const errors = validationResult(req);
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-        const user = new User({
+        const user = {
             email: req.body.email,
-            password: hashedPassword,
+            password: req.body.password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-        });
+        };
 
         if (!errors.isEmpty()) {
             res.render("auth/sign-up", {
                 title: "Sign Up",
                 user,
-                password: req.body.password,
                 password_confirm: req.body.password_confirm,
                 errors: errors.array(),
             });
         } else {
-            await user.save();
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            user.password = hashedPassword;
+
+            await new User(user).save();
 
             // log in user
             req.login(user, function (err) {
