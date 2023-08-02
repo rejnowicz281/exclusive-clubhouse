@@ -34,15 +34,15 @@ export const signUpPost = [
     }),
     body("first_name").optional({ checkFalsy: true }).trim().escape(),
     body("last_name").optional({ checkFalsy: true }).trim().escape(),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
-        const user = {
+        const user = new User({
             email: req.body.email,
             password: req.body.password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-        };
+        });
 
         if (!errors.isEmpty()) {
             res.render("auth/sign-up", {
@@ -55,7 +55,7 @@ export const signUpPost = [
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             user.password = hashedPassword;
 
-            await new User(user).save();
+            await user.save();
 
             // log in user
             req.login(user, function (err) {
