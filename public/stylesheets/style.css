@@ -67,6 +67,10 @@ nav a:hover {
     border: 1px solid #ccc;
 }
 
+.post h2 {
+    margin: 0;
+}
+
 .delete-post {
     margin-top: 30px;
     background-color: #b44545;
