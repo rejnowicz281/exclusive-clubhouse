@@ -75,6 +75,10 @@ export const postEdit = asyncHandler(async (req, res) => {
 
     const post = await Post.findById(id);
 
+    const canModify =
+        req.isAuthenticated() && ((req.user.is_member && req.user.id == post.author.id) || req.user.is_admin);
+    if (!canModify) return res.redirect(post.url);
+
     if (!post) return res.redirect("/posts");
 
     res.render("posts/edit", { title: `Edit Post '${post.id}'`, post });
