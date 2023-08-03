@@ -1,6 +1,7 @@
 // import rateLimit from "express-rate-limit";
 import bcrypt from "bcryptjs";
 import compression from "compression";
+import MongoStore from "connect-mongo";
 import debug from "debug";
 import express from "express";
 import flash from "express-flash";
@@ -57,6 +58,10 @@ app.use(
         secret: "secret",
         resave: false,
         saveUninitialized: false,
+        store: MongoStore.create({ mongoUrl: URI, collection: "sessions" }),
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        },
     })
 );
 app.use(passport.initialize());
