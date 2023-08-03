@@ -7,7 +7,7 @@
         <% if(currentUser) {%>
         <p>Welcome, <%= currentUser.identifier %></p>
         <% if(currentUser.is_admin) {%>
-        <p>You are an <b>admin</b>.</p>
+        <p>You are an <b>admin</b>. You can see and modify all posts, even if you are not a member.</p>
         <% } %> <% if(currentUser.is_member) {%>
         <p>You are a <b>member</b>.</p>
         <% } %> <% } else{ %>
