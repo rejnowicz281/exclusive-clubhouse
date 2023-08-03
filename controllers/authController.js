@@ -34,6 +34,7 @@ export const signUpPost = [
     }),
     body("first_name").optional({ checkFalsy: true }).trim().escape(),
     body("last_name").optional({ checkFalsy: true }).trim().escape(),
+    body("is_admin").toBoolean(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -42,6 +43,7 @@ export const signUpPost = [
             password: req.body.password,
             first_name: req.body.first_name || undefined,
             last_name: req.body.last_name || undefined,
+            is_admin: req.body.is_admin,
         };
 
         const user = new User(userData);

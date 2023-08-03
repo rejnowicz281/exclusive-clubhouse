@@ -31,6 +31,13 @@
                 <!-- prettier-ignore -->
                 <input name="password_confirm" type="password" value="<%= locals.password_confirm ? password_confirm : "" %>" />
             </div>
+            <div class="form-field">
+                <label for="is_admin">Admin</label>
+
+                <!-- prettier-ignore -->
+                <input name="is_admin" type="checkbox" <% if(locals.user) {%> <% if(user.is_admin) {%> checked <%} %>
+                <%} %> />
+            </div>
             <button class="form-submit-button" type="submit">Sign Up</button>
         </form>
         <a href="/log-in">Log In</a>
