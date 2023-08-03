@@ -16,7 +16,7 @@
         <% if(canModify) {%>
         <a href="<%= post.url %>/edit">Edit Post</a>
         <form action="<%= post.url %>?_method=DELETE" method="POST">
-            <button>Delete Post</button>
+            <button class="delete-post" type="submit">Delete Post</button>
         </form>
         <% } %>
     </body>

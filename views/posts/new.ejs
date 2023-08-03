@@ -4,8 +4,8 @@
     <body>
         <%- include("../partials/nav.ejs") %>
         <h1>New Post</h1>
+        <%- include("../partials/formErrors.ejs") %>
         <!-- prettier-ignore -->
         <%- include("./form.ejs", { action: "/posts", submitValue: "Create Post"}) %>
-        <%- include("../partials/formErrors.ejs") %>
     </body>
 </html>

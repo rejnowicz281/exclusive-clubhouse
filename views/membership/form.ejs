@@ -4,13 +4,13 @@
     <body>
         <%- include("../partials/nav.ejs") %>
         <h1>Become A Member</h1>
+        <%- include("../partials/formErrors.ejs") %>
         <form action="/membership?_method=PUT" method="post">
-            <div>
+            <div class="form-field">
                 <label for="password">Secret Membership Password</label>
                 <input type="password" name="password" id="password" />
             </div>
-            <button type="submit">Submit</button>
+            <button class="form-submit-button" type="submit">Submit</button>
         </form>
-        <%- include("../partials/formErrors.ejs") %>
     </body>
 </html>

@@ -4,18 +4,18 @@
     <body>
         <%- include("../partials/nav.ejs") %>
         <h1>Log in</h1>
-        <form action="/log-in" method="POST">
-            <div>
+        <%- include("../partials/formErrors.ejs") %>
+        <form class="auth-form" action="/log-in" method="POST">
+            <div class="form-field">
                 <label for="email">Email</label>
                 <input name="email" placeholder="email" type="email" required />
             </div>
-            <div>
+            <div class="form-field">
                 <label for="password">Password</label>
                 <input name="password" type="password" required />
             </div>
-            <button type="submit">Log In</button>
+            <button class="form-submit-button" type="submit">Log In</button>
         </form>
         <a href="/sign-up">Sign Up</a>
-        <%- include("../partials/formErrors.ejs") %>
     </body>
 </html>

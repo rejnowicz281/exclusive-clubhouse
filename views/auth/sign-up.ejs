@@ -4,35 +4,35 @@
     <body>
         <%- include("../partials/nav.ejs") %>
         <h1>Sign Up</h1>
-        <form action="/sign-up" method="POST">
-            <div>
+        <%- include("../partials/formErrors.ejs") %>
+        <form class="auth-form" action="/sign-up" method="POST">
+            <div class="form-field">
                 <label for="first_name">First Name</label>
                 <!-- prettier-ignore -->
                 <input name="first_name" placeholder="First Name" type="text" value="<%= locals.user ? user.first_name : "" %>" />
             </div>
-            <div>
+            <div class="form-field">
                 <label for="last_name">Last Name</label>
                 <!-- prettier-ignore -->
                 <input name="last_name" placeholder="Last Name" type="text" value="<%= locals.user ? user.last_name : "" %>"/>
             </div>
-            <div>
+            <div class="form-field">
                 <label for="email">Email</label>
                 <!-- prettier-ignore -->
                 <input name="email" placeholder="Email" type="email" required value="<%= locals.user ? user.email : "" %>"/>
             </div>
-            <div>
+            <div class="form-field">
                 <label for="password">Password</label>
                 <!-- prettier-ignore -->
                 <input name="password" type="password" required value="<%= locals.user ? user.password : "" %>" />
             </div>
-            <div>
+            <div class="form-field">
                 <label for="password_confirm">Password Confirm</label>
                 <!-- prettier-ignore -->
                 <input name="password_confirm" type="password" value="<%= locals.password_confirm ? password_confirm : "" %>" />
             </div>
-            <button type="submit">Sign Up</button>
+            <button class="form-submit-button" type="submit">Sign Up</button>
         </form>
         <a href="/log-in">Log In</a>
-        <%- include("../partials/formErrors.ejs") %>
     </body>
 </html>

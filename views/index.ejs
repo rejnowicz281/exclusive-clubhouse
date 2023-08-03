@@ -7,11 +7,12 @@
         <% if(currentUser) {%>
         <p>Welcome, <%= currentUser.identifier %></p>
         <% if(currentUser.is_admin) {%>
-        <p>You are an admin</p>
+        <p>You are an <b>admin</b>.</p>
         <% } %> <% if(currentUser.is_member) {%>
-        <p>You are a member</p>
+        <p>You are a <b>member</b>.</p>
         <% } %> <% } else{ %>
-        <p>Welcome, guest</p>
+        <p>Welcome, guest.</p>
         <% } %>
+        <a href="/posts">Go to posts</a>
     </body>
 </html>

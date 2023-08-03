@@ -1,16 +1,14 @@
 <nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <% if(currentUser) { %> <% if(currentUser.is_member) {%>
-        <li><a href="/posts/new">New Post</a></li>
-        <% } else { %>
-        <li><a href="/membership">Become a Member</a></li>
-        <% } %>
-        <li><a href="/log-out">Logout</a></li>
-        <% } else{ %>
-        <li><a href="/log-in">Log in</a></li>
-        <li><a href="/sign-up">Sign Up</a></li>
-        <% } %>
-    </ul>
+    <div><a href="/">Home</a></div>
+    <div><a href="/posts">Posts</a></div>
+    <% if(currentUser) { %> <% if(currentUser.is_member) {%>
+    <div><a href="/posts/new">New Post</a></div>
+    <% } else { %>
+    <div><a href="/membership">Become a Member</a></div>
+    <% } %>
+    <div><a href="/log-out">Logout</a></div>
+    <% } else{ %>
+    <div><a href="/log-in">Log in</a></div>
+    <div><a href="/sign-up">Sign Up</a></div>
+    <% } %>
 </nav>

@@ -1,5 +1,94 @@
 body {
-    padding: 50px;
-    font: 14px Arial, Helvetica, sans-serif;
-    background-color: rgb(176, 237, 237);
+    margin: 0;
+    padding: 60px;
+    font: 22px Arial, Helvetica, sans-serif;
+}
+
+a {
+    transition: 0.2s;
+}
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 20px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.form-field {
+    margin: 25px 0;
+}
+
+button {
+    transition: 0.2s;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5px;
+}
+
+a:hover {
+    color: blueviolet;
+}
+
+nav div {
+    margin: 10px 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    color: #be8686;
+}
+
+.form-errors-list {
+    color: red;
+}
+
+.post {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.delete-post {
+    margin-top: 30px;
+    background-color: #b44545;
+    color: white;
+}
+
+.delete-post:hover {
+    background-color: #a43c3c;
+}
+
+.form-submit-button {
+    background-color: #a3e0a3;
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    color: rgb(14, 14, 14);
+}
+
+.form-submit-button:hover {
+    background-color: #8fd08f;
+}
+
+.auth-form {
+    margin-bottom: 20px;
 }
