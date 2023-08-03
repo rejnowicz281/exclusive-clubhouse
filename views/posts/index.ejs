@@ -4,7 +4,7 @@
     <body>
         <%- include("../partials/nav.ejs") %>
         <h1>Posts</h1>
-        <% posts.forEach(post=>{ %>
+        <% if(posts.length) {%> <% posts.forEach(post=>{ %>
         <div class="post">
             <h2><%= post.title %></h2>
             <% if(post.body) {%>
@@ -15,6 +15,8 @@
             <p><b>Last Updated:</b> <%= authorized ? post.updatedAt_formatted : "Not authorized" %></p>
             <a href="<%= post.url %>">View Post</a>
         </div>
-        <% }) %>
+        <% }) %> <% } else { %>
+        <p>No posts found.</p>
+        <% } %>
     </body>
 </html>
